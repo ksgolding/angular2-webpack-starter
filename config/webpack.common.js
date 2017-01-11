@@ -128,7 +128,14 @@ module.exports = function (options) {
           test: /\.css$/,
           use: ['to-string-loader', 'css-loader']
         },
-
+        /**
+         * scss support
+         */
+        {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          loaders: ['to-string-loader', 'css-loader', 'sass-loader'] // sass-loader not scss-loader
+        },
         /* Raw loader support for *.html
          * Returns file content as string
          *
@@ -150,6 +157,9 @@ module.exports = function (options) {
       ],
 
     },
+    // sassLoader: {
+    //  includePaths: [path.resolve(__dirname, "../assets/bootstrap/scss")]
+    // },
 
     /*
      * Add additional plugins to the compiler.
